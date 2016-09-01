@@ -27,7 +27,12 @@ IMAGES_TEST_TRAIN_DATA <- paste(DATA_DIR, "train_train.csv", sep="/")
 IMAGES_TEST_TEST_DATA <- paste(DATA_DIR, "train_test.csv", sep="/")
 IMAGES_PREDICT_DATA <- paste(DATA_DIR, "test.csv", sep="/")
 SOURCE_CODE_DIR <- "/home/nguyenkien/kaggle/Digit-Recognizer"
-test_mode = FALSE
+
+#########################################################################################
+# Set running mode
+#------------------------------------------------------------------------------
+test_mode = TRUE
+#########################################################################################
 
 # Load MXNet
 require(mxnet)
@@ -95,5 +100,6 @@ if (test_mode){
   predicted <- predictConvNet(model = conv_net_model, data = data.x)
   print(proc.time() - tic)
   write.table(x=predicted, file=paste(DATA_DIR,"predicted.csv",sep="/"), 
-            col.names=c("ImageId","Label"), row.names=FALSE, sep=",", dec=".")
+            col.names=c("ImageId","Label"), row.names=FALSE, sep=",", 
+            dec=".", quote=FALSE)
 }
